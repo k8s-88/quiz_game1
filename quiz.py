@@ -1,13 +1,19 @@
-print("Quiz Game")
-print("---------")
-print()
-print("1. Run Quiz")
-print("2. Enter a Question")
-print("3. Exit")
-print()
+def show_menu():
+    print("Quiz Game")
+    print("---------")
+    print()
+    print("1. Run Quiz")
+    print("2. Enter a Question")
+    print("3. Exit")
+    print()
+    
+    option = input("Enter option: ")
+    return option
 
-option = input("Enter option: ")
 
 
-
-
+while True: 
+    option = show_menu()
+    
+    if option == "3":
+        break
