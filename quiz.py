@@ -1,5 +1,4 @@
 def show_menu():
-    print("---------")
     print("Quiz Game")
     print("---------")
     print()
@@ -10,67 +9,47 @@ def show_menu():
     
     option = input("Enter option: ")
     return option
-
-
-
-
-
+    
+    
 def ask_questions():
     with open("questions.txt") as f:
-        
-# below line explained:        
-#f.read reads the file and returns a string. strings can be split, therefore, we can split this returned string. .split returns a list. you can add this onto lists -> [:].
-
         questions = f.read().split("\n")[:-1]
         
-        score = 0
-        
-        
-        for q in questions:
-            question, answer = q.split('|')
-            guess = input(question)
-            print(guess)
-
-            if guess == answer:
-                score += 1
-        
-        print("you scored {0}".format(score))
+    score = 0
+    total = len(questions)
     
-
-
-
-
-
-        # another way to split the questions above:
-        # for q in questions:
-        #     x = q.split('|')
-        #     print(x[0]) 
-        #     print(x[1])
-
-       
-    
-
-
+    for q in questions:
+        question, answer = q.split('|')
+        guess = input(question)
+        
+        
+        
+        #point of comparsisson:
+        if guess.casefold() == answer.casefold():
+            score += 1
+        
+    print("You scored {0} out of {1}".format(score, total))
+        
+        
 
 def add_a_question():
     question = input("Enter a question: ")
-    answer = input("ok then tell me, " + question + ": ")
+    answer = input("Ok then tell me, " + question + ": ")
     
     with open("questions.txt", "a") as f:
         line = question + "|" + answer + "\n"
         f.write(line)
     
 
-while True: 
+
+while True:
     option = show_menu()
     
     if option == "1":
         ask_questions()
-    
-        
+
     if option == "2":
-       add_a_question()
-        
-        
+        add_a_question()
+    
     if option == "3":
-        break
+       break
